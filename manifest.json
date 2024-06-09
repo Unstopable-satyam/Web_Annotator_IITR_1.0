@@ -1,0 +1,57 @@
+{
+  "manifest_version": 3,
+  "name": "Web Annotator IITR",
+  "version": "1.0",
+  "description": "A Chrome extension to mark text on any webpage.",
+  "permissions": [
+    "contextMenus",
+    "webNavigation",
+    "storage",
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "css": ["style.css"],
+      "js": ["html2pdf.js", "contents.js"]
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "commands": {
+    "toggle_highlight": {
+      "description": "Toggle highlight on selected text",
+      "suggested_key": {
+        "default": "Alt+Shift+C",
+        "mac": "Command+Shift+C"
+      }
+    },
+    "next_highlight": {
+      "description": "Navigate to the next highlight",
+      "suggested_key": {
+        "default": "Alt+Shift+N",
+        "mac": "Command+Shift+N"
+      }
+    },
+    "previous_highlight": {
+      "description": "Navigate to the previous highlight",
+      "suggested_key": {
+        "default": "Alt+Shift+P",
+        "mac": "Command+Shift+P"
+      }
+    },
+    "clear_highlights": {
+      "description": "Remove all highlights",
+      "suggested_key": {
+        "default": "Alt+Shift+D",
+        "mac": "Command+Shift+D"
+      }
+    }
+  }
+}
